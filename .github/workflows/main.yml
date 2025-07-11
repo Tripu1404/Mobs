@@ -21,10 +21,11 @@ jobs:
           tools: phar-composer
 
       - name: Prepare plugin structure
+        shell: bash
         run: |
-          mkdir -p plugin
-          cp -r . plugin/
-          cd plugin
+          mkdir plugin
+          shopt -s extglob
+          cp -r !(plugin|.git|.github|.gitignore|README.md|LICENSE) plugin/
 
       - name: Generate PHAR
         run: |
